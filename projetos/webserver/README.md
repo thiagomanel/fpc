@@ -1,13 +1,19 @@
 # Servidor HTTP Concorrente
 
-Neste projeto, você implementará um servidor HTTP concorrente.
-
-Há três objetivos principais no desenvolvimento deste projeto:
+Neste projeto, você implementará um servidor HTTP concorrente. Teremos três objetivos principais:
 * Aprender as primitivas de concorrência de Java;
 * Saber aplicar os módulos utilitários de concorrência em Java
 * Desenvolver um projeto de software concorrente.
 
 ## Visão Geral
+
+Neste projeto, você implementará um servidor HTTP concorrente. Mais especificamente, você tornará concorrente uma implementação serial do protocolo HTTP. Concorrência será adicional ao código base com o objetivo específico aumentar a vazão do servidor HTTP. Esta implementação base considera somente uma parte do protocolo. Por esta razão, o projeto a ser desenvolvido considerará somente requisições GET.
+
+A avaliação do projeto considerará duas partes: i) uma descrição do projeto concorrente a ser adotado (que justifique as decisões tomadas); e ii) o código fonte desenvolvido.
+
+Para guiar as decisões de projeto, o desempenho de sua implementação será aferido (e comparado com as demais implementações de seus colegas) através de um benchmark (https://github.com/wg/wrk). Note que sua nota não será baseada no resultados do benchmark.
+
+Mudanças na implementação do protocolo usado como base são permitidas, desde que justificadas.
 
 ## Especificação do projeto e avaliação
 
