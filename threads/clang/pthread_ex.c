@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <pthread.h>
+#include <unistd.h>
 
 //shared variable
 long count = 0;
@@ -16,7 +17,7 @@ void *inc_count(void *t) {
  	sleep(1);
 	//we might have used a parameter in below call to be collected
 	//by the pthread_join call
- 	pthread_exit(NULL);
+ 	pthread_exit(&my_id);
 }
 
 int main (int argc, char *argv[]) {
@@ -34,8 +35,10 @@ int main (int argc, char *argv[]) {
  	pthread_create(&threads[2], NULL, inc_count, (void *)t3);
 
 	//wait for thread termination
+    long ret;
  	for (i=0; i<3; i++) {
- 		pthread_join(threads[i], NULL);
+ 		pthread_join(threads[i], (void*) &ret);
+        printf("foo %ld\n", ret);
  	}
 
 	//with proper syncronization, we would have 3*1e7 printed
