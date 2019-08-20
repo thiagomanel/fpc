@@ -14,7 +14,6 @@ void *inc_count(void *t) {
 	for (i = 0; i < 1e7; i++) {
 		count = count + 1;
 	}
- 	sleep(1);
 	//we might have used a parameter in below call to be collected
 	//by the pthread_join call
  	pthread_exit(&my_id);
