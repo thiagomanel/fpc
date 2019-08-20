@@ -8,13 +8,13 @@ public class Main {
         Service s0 = new Service(idMaker, "s0");
         Service s1 = new Service(idMaker, "s1");
 
-        Thread t0 = new Thread(s0, "thead-s0");
-        Thread t1 = new Thread(s1, "thead-s1");
+        Thread t0 = new Thread(s0, "thread-s0");
+        Thread t1 = new Thread(s1, "thread-s1");
 
         t0.start();
         t1.start();
 
-        t0.join();;
+        t0.join();
         t1.join();
     }
 
@@ -31,7 +31,8 @@ public class Main {
         @Override
         public void run() {
             while(true) {
-                System.err.println("ServiceId=" + this.serviceId + " requestId=" + idMaker.getNext());
+                System.err.println("ServiceId=" + this.serviceId +
+                        " requestId=" + idMaker.getNext());
             }
         }
     }
