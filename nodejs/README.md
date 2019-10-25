@@ -27,7 +27,7 @@ Assim como os *workers* presentes no *Worker Pool*, as *worker threads* são uti
 O módulo `worker` fornece uma forma de criar múltiplos ambientes executando em diferentes *threads* e cria canais de mensagens entre eles. Para usar essa funcionalidade é necessário usar a *flag* `–experimental-worker` e importar o módulo no código:
 
 ```javascript
-    const worker = require('worker_threads');
+const worker = require('worker_threads');
 ```
 
 Dentro desse módulo existem algumas variáveis de controle, sendo elas: `isMainThread`, `threadId` e `parentPort`.
