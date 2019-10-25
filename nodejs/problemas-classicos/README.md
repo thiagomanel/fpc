@@ -11,3 +11,7 @@ Barbeiro Dorminhoco
 O Barbeiro Dorminhoco consiste em um problema clássico de programação concorrente. A descrição do problema é a seguinte: Na barbearia há um barbeiro e a cadeira do barbeiro, além de n cadeiras para os clientes esperarem atendimento. Quando não há clientes o barbeiro dorme, mas assim que chega um novo cliente o barbeiro acorda. Os novos clientes se sentaram nas cadeiras de espera caso ele esteja atendendo ou iram embora caso as cadeiras estejam ocupadas. 
 
 Confiram [aqui](barbeiro-dorminhoco/README.md) o código solução do Barbeiro Dorminhoco com NodeJS.
+
+Jantar dos Filósofos
+=================================
+// TODO
