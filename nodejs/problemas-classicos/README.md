@@ -1,5 +1,4 @@
 # Problemas Clássicos de Programação Concorrente
-Todo o conteúdo presente aqui são trechos retirados do material da COCIC-UFTPR. Recomendo consumir o material completo [clicando aqui](http://cocic.cm.utfpr.edu.br/progconcorrente/doku.php?id=nodejs).
 
 Produtor/Consumidor
 =================================
