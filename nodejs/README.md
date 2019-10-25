@@ -26,7 +26,9 @@ Assim como os *workers* presentes no *Worker Pool*, as *worker threads* são uti
  
 O módulo `worker` fornece uma forma de criar múltiplos ambientes executando em diferentes *threads* e cria canais de mensagens entre eles. Para usar essa funcionalidade é necessário usar a *flag* `–experimental-worker` e importar o módulo no código:
 
+```javascript
     const worker = require('worker_threads');
+```
 
 Dentro desse módulo existem algumas variáveis de controle, sendo elas: `isMainThread`, `threadId` e `parentPort`.
 
@@ -51,42 +53,44 @@ Exemplo
 =================================
 Produtor-consumidor em Node.js:
 ---------
-    const { isMainThread, Worker, parentPort } = require('worker_threads')
-    
-    function startProducer(path) {
-        const w = new Worker(path)
-    
-        w.on('message', ({ msg }) => {
-            if (msg === "It's over") {
-                w.unref()
-            }
-    
-            console.log('[Main]:', msg)
-        })
-    
-        w.on('error', (err) => console.error(err))
-        w.on('exit', (code) => {
-            if (code !== 0) {
-                console.error(new Error(`Worker stopped with exit code ${code}`))
-            }
-        })
-    
-        return w
-    }
-    
-    if (isMainThread) {
-        const w = startProducer(__filename)
-    
-        Array
-            .from({ length: 10 })
-            .map((_, idx) => w.postMessage({ msg: ++idx }))
-    } else {
-        parentPort.on('message', ({ msg }) => {
-            if (msg === 10) {
-                parentPort.postMessage({ msg: "It's over" })
-                return
-            }
-    
-            console.log('[Not Main]:', msg)
-        })
-    }
+```javascript
+const { isMainThread, Worker, parentPort } = require('worker_threads')
+
+function startProducer(path) {
+    const w = new Worker(path)
+
+    w.on('message', ({ msg }) => {
+        if (msg === "It's over") {
+            w.unref()
+        }
+
+        console.log('[Main]:', msg)
+    })
+
+    w.on('error', (err) => console.error(err))
+    w.on('exit', (code) => {
+        if (code !== 0) {
+            console.error(new Error(`Worker stopped with exit code ${code}`))
+        }
+    })
+
+    return w
+}
+
+if (isMainThread) {
+    const w = startProducer(__filename)
+
+    Array
+        .from({ length: 10 })
+        .map((_, idx) => w.postMessage({ msg: ++idx }))
+} else {
+    parentPort.on('message', ({ msg }) => {
+        if (msg === 10) {
+            parentPort.postMessage({ msg: "It's over" })
+            return
+        }
+
+        console.log('[Not Main]:', msg)
+    })
+}
+```
