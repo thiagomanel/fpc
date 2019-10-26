@@ -49,48 +49,7 @@ Também representa um canal de comunicação assíncrona de duas pontas, sendo u
 ### Worker
 Representa a execução de uma *thread* JavaScript independente. A maior parte da API do Node.js está disponível nesta classe.
 
-Exemplo
+Exemplos
 =================================
-Produtor-consumidor em Node.js:
----------
-```javascript
-const { isMainThread, Worker, parentPort } = require('worker_threads')
-
-function startProducer(path) {
-    const w = new Worker(path)
-
-    w.on('message', ({ msg }) => {
-        if (msg === "It's over") {
-            w.unref()
-        }
-
-        console.log('[Main]:', msg)
-    })
-
-    w.on('error', (err) => console.error(err))
-    w.on('exit', (code) => {
-        if (code !== 0) {
-            console.error(new Error(`Worker stopped with exit code ${code}`))
-        }
-    })
-
-    return w
-}
-
-if (isMainThread) {
-    const w = startProducer(__filename)
-
-    Array
-        .from({ length: 10 })
-        .map((_, idx) => w.postMessage({ msg: ++idx }))
-} else {
-    parentPort.on('message', ({ msg }) => {
-        if (msg === 10) {
-            parentPort.postMessage({ msg: "It's over" })
-            return
-        }
-
-        console.log('[Not Main]:', msg)
-    })
-}
-```
+- [problemas-de-listas](problemas-de-listas/)
+- [problemas-classicos](problemas-classicos/)
