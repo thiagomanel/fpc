@@ -1,6 +1,8 @@
 #  Barbeiro Dorminhoco
 Todo o conteúdo presente aqui são trechos retirados do material da COCIC-UFTPR. Recomendo consumir o material completo [clicando aqui](http://cocic.cm.utfpr.edu.br/progconcorrente/doku.php?id=nodejs).
 
+A tecnologia NodeJS é conhecida por ser single threaded, ou seja, sua aplicação roda em cima de uma única thread. Existem algumas bibliotecas e módulos que já possibilitam o uso de várias threads, mas ainda estão em fase experimental. Portanto, nestes exemplos vamos simular o uso da programação concorrente, utilizando a função setTimeout do javaScript, que agenda uma função para ser executada em um determinado tempo que for especificado.
+
 Código Principal
 =================================
 ```javascript
