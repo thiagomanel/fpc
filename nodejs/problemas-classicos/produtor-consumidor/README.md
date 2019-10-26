@@ -1,6 +1,8 @@
 # Produtor/Consumidor
 Todo o conteúdo presente aqui são trechos retirados do material da COCIC-UFTPR. Recomendo consumir o material completo [clicando aqui](http://cocic.cm.utfpr.edu.br/progconcorrente/doku.php?id=nodejs).
 
+A tecnologia NodeJS é conhecida por ser single threaded, ou seja, sua aplicação roda em cima de uma única thread. Existem algumas bibliotecas e módulos que já possibilitam o uso de várias threads, mas ainda estão em fase experimental. Portanto, nestes exemplos vamos simular o uso da programação concorrente, utilizando a função setTimeout do javaScript, que agenda uma função para ser executada em um determinado tempo que for especificado.
+
 No código abaixo, o programa faz a primeira chamada da função “producer” que por sua vez tenta requerir a permissão para executar os próximos comandos para inserção de um item no buffer. Cada vez que função é invocada, é criada uma Promise, que o javaScript coloca em uma fila para ser executado posteriormente. Este bloco de código fica aguardando até que o callback “release” seja invocado, indicando que a thread do JavaScript pode recuperar o bloco e continuar a execução.
 
 Após a liberação do processo, o JavaScript então executa o comando de inserção do item no buffer e vai para o próximo bloco de execução.
