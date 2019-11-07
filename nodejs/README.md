@@ -68,7 +68,7 @@ if (isMainThread) {
 
 } else {
   id = workerData;
-  setTimeout(function() {console.log("worker id:" + id);}, 1000 * id);
+  setTimeout(function() {console.log("worker id:" + id);}, 1000 * id); // wait "id" seconds
 }
 ```
 Saída:
