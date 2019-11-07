@@ -86,3 +86,10 @@ Outros exemplos de concorrência com NodeJS
 ---------
 - [problemas-de-listas](problemas-de-listas/)
 - [problemas-classicos](problemas-classicos/)
+
+Sugestões finais
+---------
+- [ler o material na íntegra](http://cocic.cm.utfpr.edu.br/progconcorrente/doku.php?id=nodejs)
+- [documentação oficial do Node](https://nodejs.org/docs/latest-v11.x/api/worker_threads.html#worker_threads_worker_threads)
+- conferir mais exemplos em [problemas-de-listas](problemas-de-listas/) e/ou [problemas-classicos](problemas-classicos/)
+
