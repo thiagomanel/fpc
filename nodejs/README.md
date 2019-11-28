@@ -101,4 +101,4 @@ Sugestões finais
 
 Conclusão
 ---------
-O module worker_threads possibilita o uso de threads em JavaScript e é útil para executar operações CPU-bound. Quando se trata de tarefas I/O-bound, as operações padrões de I/O assíncrona são mais eficientes que com uso de workers. Uma característica importante dos workers do módulo worker_threads é que eles compartilham memória através de estruturas pertencentes também a este biblioteca.
+O module worker_threads possibilita o uso de threads em JavaScript e é útil para executar operações CPU-bound. Quando se trata de tarefas I/O-bound, as operações padrões de I/O assíncrona são mais eficientes que com uso de workers. Uma característica importante dos workers do módulo worker_threads é que eles compartilham memória através de estruturas pertencentes também a esta biblioteca.
