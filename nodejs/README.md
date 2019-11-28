@@ -84,14 +84,21 @@ worker id:3
 ```
 Outros exemplos de concorrência com NodeJS
 ---------
-- [problemas-de-listas](problemas-de-listas/)
 - [problemas-classicos](problemas-classicos/)
 
 Sugestões finais
 ---------
-- [ler o material na íntegra](http://cocic.cm.utfpr.edu.br/progconcorrente/doku.php?id=nodejs)
-- [ler este material alternativo: Using worker_threads in Node.js](https://medium.com/@Trott/using-worker-threads-in-node-js-80494136dbb6)
-- [ler este material alternativo: Threads in Node 10.5.0: a practical intro](https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953)
-- [ler este material alternativo: Node.JS Concurrency with Async/Await and Promises!](https://medium.com/platformer-blog/node-js-concurrency-with-async-await-and-promises-b4c4ae8f4510)
-- [ler documentação oficial de Node](https://nodejs.org/docs/latest-v11.x/api/worker_threads.html#worker_threads_worker_threads)
-- conferir mais exemplos em [problemas-de-listas](problemas-de-listas/) e/ou [problemas-classicos](problemas-classicos/)
+- [ler este material de título: Node.JS Concurrency with Async/Await and Promises!](https://medium.com/platformer-blog/node-js-concurrency-with-async-await-and-promises-b4c4ae8f4510), que aparesenta a forma tradicional de se implementar concorrência em Nodejs.
+- [ler este material de título: Using worker_threads in Node.js](https://medium.com/@Trott/using-worker-threads-in-node-js-80494136dbb6), que discute como utilizar a biblioteca com um exemplo básico como o de calcular um número primo com multiplas threads.
+- [ler este material de título: Threads in Node 10.5.0: a practical intro](https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953), que é outro material introduzindo o módulo worker_threads a apresentando exemplos simples para implementação.
+- [ler este material de título: Node.js Multithreading!](https://medium.com/@mohllal/node-js-multithreading-a5cd74958a67), que também discute sobre a solução implementada no módulo worker_threads e introduz exemplos de uso.
+- [ler este material de título: Node.js multithreading: What are Worker Threads and why do they matter?](https://blog.logrocket.com/node-js-multithreading-what-are-worker-threads-and-why-do-they-matter-48ab102f8b10/), este material é mandatório pois explica como este módulo não introduz condições de corrida ao programa que a utiliza.
+- [ler o material de título: Handle Race Conditions In NodeJS Using Mutex](https://blog.theodo.com/2019/09/handle-race-conditions-in-nodejs-using-mutex/), que também discute o problema de condição de corrida no contexto de nodejs, mas sem o uso do módulo worker_threads, mas sim em código assíncrono.
+
+- [ler o material discutido na íntegra](http://cocic.cm.utfpr.edu.br/progconcorrente/doku.php?id=nodejs)
+- [ler documentação oficial da biblioteca de threads de Node](https://nodejs.org/docs/latest-v11.x/api/worker_threads.html#worker_threads_worker_threads)
+- conferir exemplos de solução de [problemas-classicos](problemas-classicos/) sem utilizar a lib worker_threads
+
+Conclusão
+---------
+O module worker_threads possibilita o uso de threads em JavaScript e é útil para executar operações CPU-bound. Quando se trata de tarefas I/O-bound, as operações padrões de I/O assíncrona são mais eficientes que com uso de workers. Uma característica importante dos workers do módulo worker_threads é que eles compartilham memória através de estruturas pertencentes também a este biblioteca.
