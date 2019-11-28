@@ -90,8 +90,8 @@ Outros exemplos de concorrência com NodeJS
 Sugestões finais
 ---------
 - [ler o material na íntegra](http://cocic.cm.utfpr.edu.br/progconcorrente/doku.php?id=nodejs)
-- [ler este material alternativo também sobre threads em node](https://medium.com/@Trott/using-worker-threads-in-node-js-80494136dbb6)
-- [ler este material alternativo também sobre threads em node](https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953)
-- [ler este material alternativo sobre concorrencia com async/await](https://medium.com/platformer-blog/node-js-concurrency-with-async-await-and-promises-b4c4ae8f4510)
+- [ler este material alternativo: Using worker_threads in Node.js](https://medium.com/@Trott/using-worker-threads-in-node-js-80494136dbb6)
+- [ler este material alternativo: Threads in Node 10.5.0: a practical intro](https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953)
+- [ler este material alternativo: Node.JS Concurrency with Async/Await and Promises!](https://medium.com/platformer-blog/node-js-concurrency-with-async-await-and-promises-b4c4ae8f4510)
 - [ler documentação oficial de Node](https://nodejs.org/docs/latest-v11.x/api/worker_threads.html#worker_threads_worker_threads)
 - conferir mais exemplos em [problemas-de-listas](problemas-de-listas/) e/ou [problemas-classicos](problemas-classicos/)
