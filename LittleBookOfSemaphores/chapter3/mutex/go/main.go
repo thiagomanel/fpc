@@ -20,7 +20,7 @@ func main() {
 func threadA(count *int32, mutex *sync.RWMutex, end *sync.WaitGroup) {
 	for i := 0; i < 1000000; i++ {
 		mutex.Lock()
-		atomic.AddInt32(count, 1)
+		*count = *count + 1
 		mutex.Unlock()
 	}
 	end.Done()
@@ -29,7 +29,7 @@ func threadA(count *int32, mutex *sync.RWMutex, end *sync.WaitGroup) {
 func threadB(count *int32, mutex *sync.RWMutex, end *sync.WaitGroup) {
 	for i := 0; i < 1000000; i++ {
 		mutex.Lock()
-		atomic.AddInt32(count, 1)
+		*count = *count + 1
 		mutex.Unlock()
 	}
 	end.Done()
