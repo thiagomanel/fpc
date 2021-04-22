@@ -5,7 +5,7 @@ to the problems presented by the book Little Book of Semaphores.
 
 # Golang Solutions
 
-Our Golang solutions does not use semaphores due to the simple fact that there is no native
+Our Golang solutions do not use semaphores due to the simple fact that there is no native
 support for it. But, you can easily find external libraries with such a feature.
 
 We decided to only employ Golang's native [sync resources](https://golang.org/pkg/sync) in our solutions. As you will notice, these resources can replace the semaphore usage and
