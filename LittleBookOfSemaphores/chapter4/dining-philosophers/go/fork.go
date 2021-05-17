@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 )
 
 type Forks struct {
@@ -9,17 +10,15 @@ type Forks struct {
 }
 
 type Fork struct {
-	id int
-	ch chan bool
+	id   int
+	lock *sync.Mutex
 }
 
 func NewForks(amount int) *Forks {
 	fs := &Forks{forks: map[int]*Fork{}}
 	for i := 0; i < amount; i++ {
 		fid := i
-		ch := make(chan bool, 1)
-		ch <- true
-		fs.forks[fid] = &Fork{id: fid, ch: ch}
+		fs.forks[fid] = &Fork{id: fid, lock: &sync.Mutex{}}
 	}
 	return fs
 }
@@ -31,7 +30,7 @@ func (fs *Forks) GetForks(ids []*int) ([]*Fork, error) {
 		if !ok {
 			return nil, fmt.Errorf("unable to find fork with id (%d)", *id)
 		}
-		<-f.ch
+		f.lock.Lock()
 		forks[i] = f
 	}
 	return forks, nil
@@ -39,6 +38,6 @@ func (fs *Forks) GetForks(ids []*int) ([]*Fork, error) {
 
 func (fs *Forks) ReleaseForks(forks []*Fork) {
 	for _, fork := range forks {
-		fork.ch <- true
+		fork.lock.Unlock()
 	}
 }

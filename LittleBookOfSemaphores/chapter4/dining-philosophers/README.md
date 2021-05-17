@@ -14,9 +14,9 @@ como *eat* e *thinking*. A versão da runtime utilizada foi golang v1.16.3.
 
 ### Results
 ``` shell
-Philosopher (0) ate 9530710 times
-Philosopher (1) ate 8549688 times
-Philosopher (2) ate 9122172 times
-Philosopher (3) ate 8380622 times
-Philosopher (4) ate 9466254 times
+Philosopher (0) ate 14056089 times
+Philosopher (1) ate 13725014 times
+Philosopher (2) ate 13604874 times
+Philosopher (3) ate 13437191 times
+Philosopher (4) ate 13595025 times
 ```
