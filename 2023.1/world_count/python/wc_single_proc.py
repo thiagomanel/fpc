@@ -5,12 +5,9 @@ def wc(content):
 	return len(content.split())
 
 def wc_file(filename):
-	try:
-		with open(filename, 'r', encoding='utf-8') as f:
-			file_content = f.read()
-			return wc(file_content)
-	except FileNotFoundError as e:
-		raise FileNotFoundError(f"File not found: {filename}") from e
+	f = open(filename, 'r', encoding='utf-8')
+	file_content = f.read()
+	return wc(file_content)
 
 def wc_dir(dir_path):
 	count = 0
