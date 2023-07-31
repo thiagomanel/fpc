@@ -5,7 +5,7 @@ def wc(content):
 	return len(content.split())
 
 def wc_file(filename):
-	f = open(filename, 'r', encoding='utf-8')
+	f = open(filename, 'r', encoding='latin-1')
 	file_content = f.read()
 	return wc(file_content)
 
