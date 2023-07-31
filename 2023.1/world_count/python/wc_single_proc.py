@@ -2,22 +2,7 @@ import os
 import sys
 
 def wc(content):
-	count = 0
-	inword = False
-
-	for char in content:
-		if char.isspace():
-			if inword:
-				inword = False
-				count += 1  # Increment the word count here
-		else:
-			if not inword:
-				inword = True
-
-	if inword:
-		count += 1  # Increment the word count if the content ends with a word
-
-	return count
+	return len(content.split())
 
 def wc_file(filename):
 	try:
