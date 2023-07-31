@@ -3,25 +3,13 @@ package main
 import (
 	"io/ioutil"
 	"log"
-	"unicode"
+	"strings"
 )
 
 // Count the number of words in `fileContent`.
 func wc(fileContent string) int {
-	numberOfWords := 0
-
-	isInWord := false
-
-	for _, character := range fileContent {
-		if unicode.IsSpace(character) {
-			isInWord = false
-		} else if !isInWord {
-			isInWord = true
-			numberOfWords++
-		}
-	}
-
-	return numberOfWords
+	words := strings.Fields(fileContent)
+	return len(words)
 }
 
 // Count the number of words in the file at `filePath`.
