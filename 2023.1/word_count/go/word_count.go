@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"strings"
 )
 
@@ -65,5 +67,21 @@ func wc_dir(directoryPath string) int {
 // │     ├── ...
 // │     └── file
 func main() {
-	// Implement here...
+	rootPath := os.Args[1]
+
+	files, err := ioutil.ReadDir(rootPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	numberOfWords := 0
+
+	for _, file := range files {
+		if file.IsDir() {
+			directoryPath := rootPath + "/" + file.Name()
+			numberOfWords += wc_dir(directoryPath)
+		}
+	}
+
+	fmt.Println(numberOfWords)
 }
