@@ -29,7 +29,7 @@ public class WordCount {
     // │     └── file
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.out.println("Usage: java Main <root_directory>");
+            System.out.println("Usage: java WordCount <root_directory>");
             return;
         }
 
@@ -41,10 +41,8 @@ public class WordCount {
         if (subdirs != null) {
             for (File subdir : subdirs) {
                 if (subdir.isDirectory()) {
-                    String subdirPath = subdir.getAbsolutePath();
-                    if (!subdirPath.equals(".") && !subdirPath.equals("..")) {
-                        count += wcDir(subdirPath);
-                    }
+                    String dirPath = rootPath + "/" + subdir.getName();
+                    count += wcDir(dirPath);
                 }
             }
         }
@@ -52,30 +50,15 @@ public class WordCount {
         System.out.println(count);
     }
 
-    public static int wc(String content) {
-        int count = 0;
-        boolean inword = false;
-
-        for (int i = 0; i < content.length(); i++) {
-            if (Character.isWhitespace(content.charAt(i))) {
-                if (inword) {
-                    inword = false;
-                }
-            } else {
-                if (!inword) {
-                    inword = true;
-                    count++;
-                }
-            }
-        }
-        return count;
+    public static int wc(String fileContent) {
+        String[] words = fileContent.split("\\s+");
+        return words.length;
     }
 
-    public static int wcFile(String filename) {
-        StringBuilder fileContent = new StringBuilder();
-
+    public static int wcFile(String filePath) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            StringBuilder fileContent = new StringBuilder();
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -83,12 +66,12 @@ public class WordCount {
             }
 
             reader.close();
+            return wc(fileContent.toString());
+
         } catch (IOException e) {
             e.printStackTrace();
             return -1;
         }
-
-        return wc(fileContent.toString());
     }
 
     public static int wcDir(String dirPath) {
@@ -102,9 +85,8 @@ public class WordCount {
                     count += wcFile(file.getAbsolutePath());
                 }
             }
+            return count;
         }
-
         return count;
     }
-
 }
