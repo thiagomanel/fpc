@@ -79,7 +79,7 @@ public class WordCount {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                fileContent.append(line);
+                fileContent.append(line).append("\n");
             }
 
             reader.close();
