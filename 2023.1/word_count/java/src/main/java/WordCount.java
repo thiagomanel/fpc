@@ -29,8 +29,8 @@ public class WordCount {
     // │     └── file
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.out.println("Usage: java WordCount <root_directory>");
-            return;
+            System.err.println("Usage: java WordCount <root_directory>");
+            System.exit(1);
         }
 
         String rootPath = args[0];
