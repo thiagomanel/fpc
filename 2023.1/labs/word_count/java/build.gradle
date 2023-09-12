@@ -1,0 +1,10 @@
+apply plugin: 'java'
+
+tasks.compileJava.options.encoding = "UTF-8"
+
+task runApp(type: JavaExec) {
+    main = 'WordCount'
+    classpath sourceSets.main.runtimeClasspath
+
+    args '../dataset'
+}
