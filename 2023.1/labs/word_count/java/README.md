@@ -4,7 +4,7 @@
 
 Before running, make sure you have [Java 11+](https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html) and [Gradle installed](https://gradle.org/install/). Furthermore, confirm that the dataset is ready (see below).
 
-## If you don't hava gradle installed
+## If you don't have gradle installed
 
 ```bash
 curl -s "https://get.sdkman.io" | bash
