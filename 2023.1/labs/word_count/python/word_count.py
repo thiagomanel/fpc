@@ -1,5 +1,6 @@
 import os
 import sys
+from threading import Thread
 
 def wc(content):
     return len(content.split())
@@ -14,12 +15,22 @@ def wc_file(filename):
 
 def wc_dir(dir_path):
     count = 0
+    threads = []
+
+    def process_file(filename):
+        nonlocal count
+        word_count = wc_file(os.path.join(dir_path, filename))
+        count += word_count
+
     for filename in os.listdir(dir_path):
-        filepath = os.path.join(dir_path, filename)
-        if os.path.isfile(filepath):
-            count += wc_file(filepath)
-        elif os.path.isdir(filepath):
-            count += wc_dir(filepath)  # Chamada recursiva para diretórios
+        if os.path.isfile(os.path.join(dir_path, filename)):
+            thread = Thread(target=process_file, args=(filename,))
+            threads.append(thread)
+            thread.start()
+
+    for thread in threads:
+        thread.join()
+
     return count
 
 def main():
