@@ -1,10 +1,9 @@
-import os
 import sys
 import threading
 
 def do_sum(path):
     _sum = 0
-    with open(path, 'rb',buffering=0) as f:
+    with open(path, 'rb') as f:
         byte = f.read(1)
         while byte:
             _sum += int.from_bytes(byte, byteorder='big', signed=False)
@@ -18,7 +17,5 @@ if __name__ == "__main__":
         try:
             thread = threading.Thread(target=do_sum, args=(path,))
             thread.start()
-            thread.join()
         except Exception as e:
             print(f"Erro ao processar {path}: {e}")
-     

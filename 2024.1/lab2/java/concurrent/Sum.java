@@ -16,7 +16,6 @@ public class Sum {
         for (String path : args) {
             Thread thread = new Thread(new FileSum(path), path);
             thread.start();
-            thread.join();
         }
     }
 
