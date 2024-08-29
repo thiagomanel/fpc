@@ -3,9 +3,8 @@
 BASE_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 SERVER_ADRESS=150.165.85.31
-SERVER_USER="concurrent"
+SERVER_USER="aluno"
 PUBLIC_KEY_PATH="$BASE_DIR/keys/public_key.pem"
-SSH_KEY="$BASE_DIR/keys/concurrent_ssh_key"
 
 chmod 600 $SSH_KEY
 
@@ -20,7 +19,7 @@ do
 
 	echo "Submitting the file..."
 	# Sending your encrypted answer file to the server
-	scp -i $SSH_KEY "$BASE_DIR/answers/$FILE_NAME"-encrypted.bin $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/prova2/
+	scp "$BASE_DIR/answers/$FILE_NAME"-encrypted.bin $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/prova2/
  	
 	
 	EXIT_CODE=$?
