@@ -1,4 +1,4 @@
-# pc
+# Ferramenta para submissão de respostas de atividades/provas
 
 Instruções para usar o script _submit-answer.sh_:
  1) Faça o clone deste repositório
