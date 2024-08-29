@@ -6,8 +6,6 @@ SERVER_ADRESS=150.165.85.31
 SERVER_USER="aluno"
 PUBLIC_KEY_PATH="$BASE_DIR/keys/public_key.pem"
 
-chmod 600 $SSH_KEY
-
 for FILE_PATH in $(ls $BASE_DIR/answers/);
 do
 	echo "Processing file $FILE_PATH"
