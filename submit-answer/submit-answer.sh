@@ -1,32 +1,22 @@
 #!/bin/bash
 
-BASE_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
-
 SERVER_ADRESS=150.165.85.31
 SERVER_USER="aluno"
-PUBLIC_KEY_PATH="$BASE_DIR/keys/public_key.pem"
 
-for FILE_PATH in $(ls $BASE_DIR/answers/);
-do
-	echo "Processing file $FILE_PATH"
-	echo "Encrypting your the file..."
+FILE_PATH=$1
 
-	# Encrypting your answer file using the Public Key
-	FILE_NAME=$(basename $FILE_PATH .txt)
-	openssl rsautl -encrypt -inkey $PUBLIC_KEY_PATH -pubin -in $BASE_DIR/answers/$FILE_PATH -out "$BASE_DIR/answers/$FILE_NAME"-encrypted.bin
+# checking if the file exists
+if [ ! -f $FILE_PATH ]; then
+   echo "ERROR: File $FILE_PATH does not exist!"
+   exit 1
+fi
 
-	echo "Submitting the file..."
-	# Sending your encrypted answer file to the server
-	scp "$BASE_DIR/answers/$FILE_NAME"-encrypted.bin $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/prova2/
+scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/prova2/
  	
-	
-	EXIT_CODE=$?
-	if [ $EXIT_CODE -eq 0 ];
-	then 
-		echo "File $FILE_PATH was submitted successfully."
-	else
-		echo "There was an error while submitting the file $FILE_PATH"
-	fi
-
-	rm "$BASE_DIR/answers/$FILE_NAME"-encrypted.bin
-done
+EXIT_CODE=$?
+if [ $EXIT_CODE -eq 0 ];
+then 
+	echo "OK! File submitted!"
+else
+	echo "ERROR: File was not submitted. Try again!"
+fi
