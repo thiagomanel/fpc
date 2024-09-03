@@ -11,7 +11,7 @@ if [ ! -f $FILE_PATH ]; then
    exit 1
 fi
 
-scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/teste/
+scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/prova2/
  	
 EXIT_CODE=$?
 if [ $EXIT_CODE -eq 0 ];
