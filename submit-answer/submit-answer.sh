@@ -12,29 +12,16 @@ if [ ! -f $FILE_PATH ]; then
    exit 1
 fi
 
-if [ $TYPE = "prova1" ]
+if [ $TYPE = "lab1" ]
 then
-        echo "Repondo prova 1"
-	scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/reposicao/prova1/
+        echo "Submiting lab1: $FILE_PATH"
+	scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/2024-2/$TYPE/
 
 else 
-	if [ $TYPE = "prova2" ]
-	then
-        	echo "Repondo prova2"
-		 scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/reposicao/prova2/
-	else 
-		if [ $TYPE = "prova3" ]
-		then 
-			echo "Repondo prova3"
-			 scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/reposicao/prova3/
-		else
-			echo "ERROR: Invalid test option!"
-		fi
-	fi
+	echo "ERROR: Invalid test option!"
+
 fi
 
-#scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVERi_USER/answers/prova2/
- 	
 EXIT_CODE=$?
 if [ $EXIT_CODE -eq 0 ];
 then 
