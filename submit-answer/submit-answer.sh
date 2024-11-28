@@ -3,7 +3,8 @@
 SERVER_ADRESS=150.165.85.31
 SERVER_USER="aluno"
 
-FILE_PATH=$1
+TYPE=$1
+FILE_PATH=$2
 
 # checking if the file exists
 if [ ! -f $FILE_PATH ]; then
@@ -11,8 +12,16 @@ if [ ! -f $FILE_PATH ]; then
    exit 1
 fi
 
-scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/answers/prova2/
- 	
+if [ $TYPE = "lab1" ]
+then
+        echo "Submiting lab1: $FILE_PATH"
+	scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/2024-2/$TYPE/
+
+else 
+	echo "ERROR: Invalid test option!"
+
+fi
+
 EXIT_CODE=$?
 if [ $EXIT_CODE -eq 0 ];
 then 
