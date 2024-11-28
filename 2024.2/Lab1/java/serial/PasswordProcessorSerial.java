@@ -17,7 +17,7 @@ public class PasswordProcessorSerial {
             return;
         }
 
-        File[] files = directory.listFiles((dir, name) -> name.endsWith(".txt"));
+        File[] files = directory.listFiles((dir, name) -> name.endsWith(""));
         if (files == null) {
             System.out.println("Erro ao listar arquivos no diretório.");
             return;
