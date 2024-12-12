@@ -12,13 +12,14 @@ if [ ! -f $FILE_PATH ]; then
    exit 1
 fi
 
-if [ $TYPE = "lab1" ]
+if [ $TYPE = "prova1" ]
 then
         echo "Submiting lab1: $FILE_PATH"
 	scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/2024-2/$TYPE/
 
 else 
 	echo "ERROR: Invalid test option!"
+	exit
 
 fi
 
