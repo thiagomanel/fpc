@@ -12,7 +12,7 @@ if [ ! -f $FILE_PATH ]; then
    exit 1
 fi
 
-if [ $TYPE = "prova1" ]
+if [ $TYPE = "prova2" ]
 then
         echo "Submiting lab1: $FILE_PATH"
 	scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/2024-2/$TYPE/
