@@ -1,7 +1,7 @@
 # The Little Book of Semaphores
 
 Repository contains solutions, implemented in several programming languages, 
-to the problems presented by the book Little Book of Semaphores. 
+to the problems presented by [The Little Book of Semaphores](https://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf). 
 
 # Golang Solutions
 
