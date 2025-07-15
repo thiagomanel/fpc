@@ -15,7 +15,7 @@ fi
 if [ $TYPE = "prova1" ] || [ $TYPE = "prova2" ] 
 then
         echo "Submiting for $TYPE: $FILE_PATH"
-	scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/2024-2/reposicao/$TYPE/
+	scp $FILE_PATH $SERVER_USER@$SERVER_ADRESS:/home/$SERVER_USER/2025-1/$TYPE/
 
 else 
 	echo "ERROR: Invalid test option!"
