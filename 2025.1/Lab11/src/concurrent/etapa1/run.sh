@@ -2,7 +2,7 @@
 
 BASE_DIR=$(dirname -- "$(readlink -f -- "$0")")
 
-if [ "$#" -ne 5 ]; then
+if [ "$#" -ne 4 ]; then
     echo "Uso: $0 <num_producers> <producing_time> <num_consumers> <consuming_time>"
     exit 1
 fi
