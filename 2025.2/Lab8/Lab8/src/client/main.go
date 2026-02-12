@@ -19,9 +19,9 @@ type Client struct {
 	hashMap map[int]string
 }
 
-func NewClient() *Client {
+func NewClient(hm map[int]string) *Client {
 	return &Client{
-		hashMap: make(map[int]string),
+		hashMap: hm,
 	}
 }
 
@@ -63,24 +63,27 @@ func listarArquivos(diretorio string) []string {
 	return result
 }
 
-// Versão SEM concorrência: sem goroutines e sem channels.
-func generateFilesHashMap(diretorio string) map[string][]int {
+// Alteramos essa função para que popule os filepaths assim que o programa inicia
+func generateFilesHashMap(diretorio string) (map[string][]int, map[int]string) {
 	if _, err := os.Stat(diretorio); os.IsNotExist(err) {
 		log.Fatalf("O diretório %s não existe", diretorio)
 	}
 	files := listarArquivos(diretorio)
 
 	hashs := make(map[string][]int)
+	fps := make(map[int]string)
 	for _, name := range files {
 		fp := filepath.Join(diretorio, name)
 		fileSum, err := sum(fp)
 		if err != nil {
 			fileSum = 0
 		}
+		fps[fileSum] = fp
+
 		hashs[fp] = append(hashs[fp], fileSum)
 	}
 
-	return hashs
+	return hashs, fps
 }
 
 func storeHashes(conn net.Conn, hashes map[string][]int) {
@@ -123,7 +126,6 @@ func updateServer(conn net.Conn, action string, filePath string, client *Client)
 		return
 	}
 
-	// SEM mutex (intencional para os alunos implementarem controle depois)
 	client.hashMap[fileHash] = filePath
 
 	fmt.Printf("Server updated: %s - %s\n", action, filePath)
@@ -193,7 +195,6 @@ func (s *Client) handleDownloadRequest(conn net.Conn, decoder *gob.Decoder) {
 		return
 	}
 
-	// SEM mutex (intencional)
 	filePath := s.hashMap[fileHash]
 
 	file, err := os.Open("./" + filePath)
@@ -246,14 +247,14 @@ func (s *Client) handleConnection(conn net.Conn) {
 	}
 }
 
-func startClientServer(server *Client) {
-	ln, err := net.Listen("tcp", ":9090")
+func startClientServer(clientPort string, server *Client) {
+	ln, err := net.Listen("tcp", fmt.Sprintf(":%s", clientPort))
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer ln.Close()
 
-	fmt.Println("Server is listening on port 8080...")
+	fmt.Printf("Server is listening on port %s...\n", clientPort)
 
 	for {
 		conn, err := ln.Accept()
@@ -265,8 +266,8 @@ func startClientServer(server *Client) {
 	}
 }
 
-func donwload(hash int, ip string, outputPath string) error {
-	conn, err := net.Dial("tcp", ip+":9090")
+func donwload(peerPort string, hash int, ip string, outputPath string) error {
+	conn, err := net.Dial("tcp", fmt.Sprintf("%s:%s", ip, peerPort))
 	if err != nil {
 		fmt.Print("erroratrtrgfd")
 		return fmt.Errorf("error connecting to server: %v", err)
@@ -297,6 +298,13 @@ func donwload(hash int, ip string, outputPath string) error {
 }
 
 func main() {
+	if len(os.Args) < 3 {
+		panic("usage: go run main.go <client_port> <peer_port> <data_path>")
+	}
+	clientPort := os.Args[1]
+	peerPort := os.Args[2]
+	directory := os.Args[3]
+
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter server IP: ")
 	serverIp, _ := reader.ReadString('\n')
@@ -308,13 +316,12 @@ func main() {
 	}
 	defer conn.Close()
 
-	directory := "./dataset/"
-	initialHashes := generateFilesHashMap(directory)
+	initialHashes, filePaths := generateFilesHashMap(directory)
 	storeHashes(conn, initialHashes)
 
-	server := NewClient()
+	server := NewClient(filePaths)
 	go monitorDirectory(conn, directory, server)
-	go startClientServer(server)
+	go startClientServer(clientPort, server)
 
 	for {
 		fmt.Println("\nChoose an option:")
@@ -368,7 +375,7 @@ func main() {
 				continue
 			}
 
-			donwload(hash, strings.Split(ips[0], ":")[0], filePath)
+			donwload(peerPort, hash, strings.Split(ips[0], ":")[0], filePath)
 
 		case 3:
 			fmt.Println("Exiting...")
